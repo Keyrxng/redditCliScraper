@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "build:webpack": "webpack --config webpack.config.js",
-    "bare-test": "mocha && baseman run bld/test/baseman",
+    "bare-test": "mocha && baseman run test/baseman",
     "pretest": "yarn build",
     "test": "nyc yarn bare-test",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
