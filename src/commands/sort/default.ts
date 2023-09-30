@@ -1,5 +1,5 @@
 import { Command, command, metadata, param } from 'clime'
-import RedditScraper from '../../classes/classes'
+import { RedditScraper } from '../../classes/classes'
 import { validSortInput, validateInput } from '../../utils/inputValidation'
 import { RedditStory } from '../../types'
 

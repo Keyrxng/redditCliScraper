@@ -1,9 +1,10 @@
 {
   "name": "scraper",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "author": "Keyrxng",
+  "types": "dist/exports.ts",
   "scripts": {
     "build": "yarn lint && rimraf dist && tsc",
     "build:webpack": "webpack --config webpack.config.js",

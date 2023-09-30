@@ -159,4 +159,4 @@ class RedditScraper {
     }
 }
 
-export default RedditScraper
+export { RedditScraper }
