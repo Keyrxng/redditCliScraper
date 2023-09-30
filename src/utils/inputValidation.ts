@@ -1,35 +1,47 @@
-import Ajv, { ValidateFunction } from "ajv";
-const ajv = new Ajv();
+import Ajv, { ValidateFunction } from 'ajv'
+const ajv = new Ajv()
 
-const subredditSchema = {
-    type: "object",
+const searchSchema = {
+    type: 'object',
     properties: {
-        subredditOrCommand: { type: "string" },
-        filterOrSubreddit: { type: "string" },
-        storyCount: { type: "integer", minimum: 1, maximum: 100 },
+        query: { type: 'string' },
     },
-    required: ["subredditOrCommand"],
-};
+    required: ['query'],
+}
+
+const sortSchema = {
+    type: 'object',
+    properties: {
+        subreddit: { type: 'string' },
+        sortType: {
+            type: 'string',
+            enum: ['hot', 'new', 'top', 'controversial'],
+        },
+        storyCount: { type: 'integer', minimum: 1, maximum: 100 },
+    },
+    required: ['subreddit', 'sortType'],
+}
 
 const authenticationSchema = {
-    type: "object",
+    type: 'object',
     properties: {
-        username: { type: "string" },
-        password: { type: "string" },
+        username: { type: 'string' },
+        password: { type: 'string' },
     },
-    required: ["username", "password"],
-};
+    required: ['username', 'password'],
+}
 
-export const validSubInput = ajv.compile(subredditSchema);
-export const validAuthInput = ajv.compile(authenticationSchema);
+export const validSearchInput = ajv.compile(searchSchema)
+export const validSortInput = ajv.compile(sortSchema)
+export const validAuthInput = ajv.compile(authenticationSchema)
 
-
-export function validateInput(validate: ValidateFunction, data: object): boolean {
-    const valid = validate(data);
+export function validateInput(
+    validate: ValidateFunction,
+    data: object
+): boolean {
+    const valid = validate(data)
     if (!valid) {
-        // eslint-disable-next-line no-console
-        console.error(validate.errors);
+        console.error(validate.errors)
     }
-    return valid;
-  }
-  
+    return valid
+}
