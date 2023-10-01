@@ -118,14 +118,6 @@ class RedditScraper {
                 }
             )
 
-            console.log('====================================')
-            console.log(response.data.data.children[0].data)
-            console.log('====================================')
-            console.log(response.data.data)
-            console.log('====================================')
-            console.log(response.data)
-            console.log('====================================')
-
             response.data.data.children.forEach(
                 (child: {
                     data: {
@@ -143,12 +135,26 @@ class RedditScraper {
                         comments: child.data.comments,
                     }
 
+                    const wordCounter = (str: string): number => {
+                        const cleanedStr = str.replace(/\s+/g, ' ').trim()
+
+                        if (!cleanedStr) {
+                            return 0
+                        }
+
+                        const wordsArray = cleanedStr.split(' ')
+
+                        return wordsArray.length
+                    }
+
                     const story: RedditStory = {
                         title: child.data.title,
                         url: child.data.url,
                         subreddit: child.data.subreddit,
                         score: child.data.score,
                         commentsCount: child.data.num_comments,
+                        upvotes: child.data.score,
+                        wordCount: wordCounter(child.data.selftext),
                         post: post,
                     }
                     stories.push(story)

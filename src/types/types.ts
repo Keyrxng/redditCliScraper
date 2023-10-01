@@ -13,6 +13,8 @@ const RedditStory = Type.Object({
     subreddit: Type.String(),
     score: Type.Number(),
     commentsCount: Type.Number(),
+    upvotes: Type.Number(),
+    wordCount: Type.Number(),
     post: RedditPost,
 })
 

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\keyrx\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js tsc
+  C:\Program Files\nodejs\node.exe C:\Users\keyrx\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js build
 
 PATH: 
   C:\Users\keyrx\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\keyrx\bin;C:\Python311\Scripts;C:\Python311;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files (x86)\cloudflared\;C:\Users\keyrx\AppData\Local\Microsoft\WindowsApps;C:\Users\keyrx\AppData\Local\GitHubDesktop\bin;C:\Users\keyrx\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\keyrx\AppData\Roaming\npm;C:\Users\keyrx\AppData\Roaming\Python\Python311\Scripts;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;C:\Users\keyrx\.foundry\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\keyrx\Desktop\mrr\scraper\package.json: Unexpected token } in JSON at position 451
+  SyntaxError: C:\Users\keyrx\Desktop\mrr\manipulator\lib\scraper\package.json: Unexpected token } in JSON at position 460
       at JSON.parse (<anonymous>)
       at C:\Users\keyrx\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
@@ -25,17 +25,18 @@ npm manifest:
   {
     "name": "scraper",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "dist/index.js",
     "license": "MIT",
     "author": "Keyrxng",
+    "types": "dist/exports.ts",
     "scripts": {
       "build": "yarn lint && rimraf dist && tsc",
       "build:webpack": "webpack --config webpack.config.js",
       "bare-test": "mocha && baseman run test/baseman",
       "pretest": "yarn build",
       "test": "nyc yarn bare-test",
-      "lint": "eslint --ext .ts src test",
-      "format": "prettier --write src/**/*.ts test/**/*.ts",
+      "lint": "eslint --ext .ts src",
+      "format": "prettier --write src",
     },
     "dependencies": {
       "@sinclair/typebox": "^0.31.17",
